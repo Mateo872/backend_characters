@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import "./src/database/dbConnection";
+import path from "path";
 import charactersRoutes from "./src/routes/characters.routes";
 
 dotenv.config();
@@ -16,5 +17,6 @@ app.listen(app.get("port"), () => {
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.use("/apicharacters", charactersRoutes);
